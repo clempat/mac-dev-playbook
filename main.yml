@@ -24,12 +24,17 @@
     - role: geerlingguy.mac.dock
       when: configure_dock
       tags: ['dock']
+    - role: sicruse.powerline-fonts
+      tags: ['fonts']
 
   tasks:
     - import_tasks: tasks/sudoers.yml
       when: configure_sudoers
       tags: ['sudoers']
 
+    - import_tasks: tasks/sudoers.yml
+      when: configure_sudoers
+      tags: ['sudoers']
     - import_tasks: tasks/terminal.yml
       when: configure_terminal
       tags: ['terminal']
@@ -41,9 +46,17 @@
     - import_tasks: tasks/extra-packages.yml
       tags: ['extra-packages']
 
-    - import_tasks: tasks/sublime-text.yml
-      when: configure_sublime
-      tags: ['sublime-text']
+    - import_tasks: tasks/neovim.yml
+      tags: ['neovim']
+
+    - import_tasks: tasks/git.yml
+      tags: ['git']
+
+    - import_tasks: tasks/zsh.yml
+      tags: ['zsh']
+
+    - import_tasks: tasks/fonts.yml
+      tags: ['fonts']
 
     - name: Run configured post-provision ansible task files.
       include_tasks: "{{ outer_item }}"

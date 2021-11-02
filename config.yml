@@ -6,16 +6,34 @@ configure_terminal: true
 configure_osx: true
 
 # Set to 'true' to configure the Dock via dockutil.
-configure_dock: false
-dockitems_remove: []
-# - Launchpad
-# - TV
-# - Podcasts
-# - 'App Store'
-dockitems_persist: []
+configure_dock: true
+dockitems_remove:
+  - Launchpad
+  - TV
+  - Podcasts
+  - 'App Store'
+  - Music
+  - Messages
+  - FaceTime
+  - Contacts
+  - Maps
+  - Notes
+  - Reminders
+  - Photos
+  - Siri
+dockitems_persist: 
+  - name: "Brave Browser"
+    path: "/Applications/Brave Browser.app/"
+    pos: 0
+  - name: "Todoist"
+    path: "/Applications/Todoist.app/"
+    pos: 1
 # - name: "Sublime Text"
 #   path: "/Applications/Sublime Text.app/"
 #   pos: 5
+
+zsh_antigen_bundles_extras:
+  - romkatv/powerlevel10k
 
 configure_sudoers: false
 sudoers_custom_config: ''
@@ -24,18 +42,24 @@ sudoers_custom_config: ''
 #   # Allow users in admin group to use sudo with no password.
 #   %admin ALL=(ALL) NOPASSWD: ALL
 
-dotfiles_repo: https://github.com/geerlingguy/dotfiles.git
+dotfiles_repo: git@github.com:clempat/dotfiles.git
 dotfiles_repo_accept_hostkey: true
-dotfiles_repo_local_destination: ~/Development/GitHub/dotfiles
+dotfiles_repo_local_destination: ~/workspace/GitHub/dotfiles
+dotfiles_repo_version: main
 dotfiles_files:
   - .zshrc
-  - .gitignore
-  - .inputrc
   - .osx
-  - .vimrc
+  - .bashrc
+  - .p10k.zsh
+  - .profile
+  - .tmux.conf
+  - .tmux-cht-command
+  - .tmux-cht-languages
+  - .config
 
 homebrew_installed_packages:
   # - ansible # Installed via Pip.
+  - ripgrep
   - autoconf
   - bash-completion
   - git
@@ -56,27 +80,46 @@ homebrew_installed_packages:
   - wget
   - wrk
   - zsh-history-substring-search
+  - zsh
+  - wget
+  - antigen
+  - { name: luajit, state: head }
+  - { name: neovim, state: head }
+  - tmux
+  - fzf
+  - jenv
 
 homebrew_taps:
   - homebrew/core
   - homebrew/cask
+  - homebrew/cask-versions
 
 homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
+  - 1password
   - chromedriver
   - docker
   - dropbox
   - firefox-developer-edition
   - google-chrome
-  - brave
+  - brave-browser
   - handbrake
   - licecap
   - sequel-ace
   - slack
   - transmit
+  - alfred
+  - discord
+  - caffeine
+
+homebrew_cask_uninstalled_apps: []
 
 # See `geerlingguy.mas` role documentation for usage instructions.
-mas_installed_apps: []
+# Looks like login does not works any more: https://github.com/mas-cli/mas/issues/164
+mas_installed_apps: 
+  - { id: 497799835, name: "Xcode" }
+  - { id: 585829637, name: "Todoist" }
+  - { id: 967805235, name: "Paste" } 
 mas_email: ""
 mas_password: ""
 
@@ -93,7 +136,18 @@ gem_packages: []
 # - name: bundler
 #   state: present # present/absent/latest, default: present
 #   version: "~> 1.15.1" # default: N/A
-npm_packages: []
+npm_packages: 
+  - name: tldr
+  - name: "@lifeart/ember-language-server"
+  - name: "@tailwindcss/language-server"
+  - name: vscode-langservers-extracted
+  - name: typescript
+  - name: typescript-language-server
+  - name: yaml-language-server
+  - name: graphql-language-service-cli
+  - name: dockerfile-language-server-nodejs
+  - name: stylelint-lsp
+  - name: vscode-langservers-extracted
 # - name: webpack
 #   state: present # present/absent/latest, default: present
 #   version: "^2.6" # default: N/A
@@ -107,3 +161,9 @@ configure_sublime: false
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks: []
+
+powerline_users:
+  - user: clementpatout
+
+powerline_fonts:
+  - RobotoMono

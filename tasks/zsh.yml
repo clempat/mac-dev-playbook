@@ -1,0 +1,39 @@
+---
+
+- name: Get the zsh path
+  shell: which zsh
+  register: zsh_path
+
+- name: Get current Shell
+  shell: echo $SHELL
+  register: echo_shell
+
+- name: Add zsh in shells
+  lineinfile:
+    path: /etc/shells
+    regexp: "{{ zsh_path.stdout }}"
+    line:  "{{ zsh_path.stdout }}"
+  become: true
+
+- name: Change shell to zsh
+  shell: "chsh -s {{ zsh_path.stdout }}"
+  become_user: clementpatout
+  when: echo_shell.stdout != zsh_path.stdout
+
+- name: Install Oh-My-Zsh
+  shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh > ~/.oh-my-installer && chmod +x ~/.oh-my-installer && ~/.oh-my-installer
+  args:
+    creates: "~/.oh-my-zsh"
+
+- name: Install powerlevel10k
+  git:
+    depth: 1
+    repo: https://github.com/romkatv/powerlevel10k.git
+    dest: "{{ lookup('env', 'HOME') | default('~') }}/.oh-my-zsh/custom/powerlevel10k"
+
+- name: Install zsh plugins
+  git:
+    repo: "{{ item.url }}"
+    dest: "{{ lookup('env', 'HOME') | default('~') }}/.oh-my-zsh/custom/plugins/{{ item.name }}"
+  loop:
+    - {name: zsh-autosuggestions, url:  https://github.com/zsh-users/zsh-autosuggestions}

@@ -2,6 +2,7 @@
 roles:
   - name: elliotweiser.osx-command-line-tools
   - name: geerlingguy.dotfiles
-
+  - name: viasite-ansible.zsh
+  - name: sicruse.powerline-fonts
 collections:
   - name: geerlingguy.mac
