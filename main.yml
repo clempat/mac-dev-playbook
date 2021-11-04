@@ -9,23 +9,23 @@
       include_vars: "{{ item }}"
       with_fileglob:
         - "{{ playbook_dir }}/config.yml"
-      tags: ['always']
+      tags: ["always"]
 
   roles:
     - role: elliotweiser.osx-command-line-tools
       when: ansible_facts['os_family'] == 'Darwin'
     - role: geerlingguy.mac.homebrew
       when: ansible_facts['os_family'] == 'Darwin'
-      tags: ['homebrew']
+      tags: ["homebrew"]
     - role: geerlingguy.dotfiles
       when: configure_dotfiles
-      tags: ['dotfiles']
+      tags: ["dotfiles"]
     - role: geerlingguy.mac.mas
       when: ansible_facts['os_family'] == 'Darwin' and mas_installed_apps or mas_installed_app_ids
-      tags: ['mas']
+      tags: ["mas"]
     - role: geerlingguy.mac.dock
       when: ansible_facts['os_family'] == 'Darwin' and configure_dock
-      tags: ['dock']
+      tags: ["dock"]
 
   tasks:
     - name: Check the OS
@@ -34,37 +34,37 @@
 
     - import_tasks: tasks/sudoers.yml
       when: ansible_facts['os_family'] == 'Darwin' and configure_sudoers
-      tags: ['sudoers']
+      tags: ["sudoers"]
 
     - import_tasks: tasks/terminal.yml
-      when: ansible_facts['os_family'] == 'Darwin' and configure_terminal
-      tags: ['terminal']
+      when: configure_terminal
+      tags: ["terminal"]
 
     - import_tasks: tasks/osx.yml
       when: ansible_facts['os_family'] == 'Darwin' and configure_osx
-      tags: ['osx']
+      tags: ["osx"]
 
     - import_tasks: tasks/extra-packages.yml
-      tags: ['extra-packages']
+      tags: ["extra-packages"]
 
     - import_tasks: tasks/neovim.yml
-      tags: ['neovim']
+      tags: ["neovim"]
 
     - import_tasks: tasks/git.yml
-      tags: ['git']
+      tags: ["git"]
 
     - import_tasks: tasks/zsh.yml
-      tags: ['zsh']
+      tags: ["zsh"]
 
     - import_tasks: tasks/fonts.yml
-      tags: ['fonts']
+      tags: ["fonts"]
 
-    - include_tasks: 
+    - include_tasks:
         file: tasks/dmg.yml
         apply:
-          tags: ['dmg']
+          tags: ["dmg"]
       when: ansible_facts['os_family'] == 'Darwin' and dmg_apps
-      tags: ['dmg']
+      tags: ["dmg"]
       loop: "{{ dmg_apps }}"
 
     - name: Run configured post-provision ansible task files.
@@ -72,4 +72,4 @@
       loop_control:
         loop_var: outer_item
       with_fileglob: "{{ post_provision_tasks|default(omit) }}"
-      tags: ['post']
+      tags: ["post"]

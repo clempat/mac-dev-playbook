@@ -1,5 +1,4 @@
 ---
-
 - name: Get the zsh path
   shell: which zsh
   register: zsh_path
@@ -12,7 +11,7 @@
   lineinfile:
     path: /etc/shells
     regexp: "{{ zsh_path.stdout }}"
-    line:  "{{ zsh_path.stdout }}"
+    line: "{{ zsh_path.stdout }}"
   become: true
 
 - name: Change shell to zsh
@@ -36,4 +35,11 @@
     repo: "{{ item.url }}"
     dest: "{{ lookup('env', 'HOME') | default('~') }}/.oh-my-zsh/custom/plugins/{{ item.name }}"
   loop:
-    - {name: zsh-autosuggestions, url:  https://github.com/zsh-users/zsh-autosuggestions}
+    - {
+        name: zsh-autosuggestions,
+        url: https://github.com/zsh-users/zsh-autosuggestions,
+      }
+    - {
+        name: zsh-syntax-highlighting,
+        url: https://github.com/zsh-users/zsh-syntax-highlighting,
+      }

@@ -11,7 +11,7 @@ dockitems_remove:
   - Launchpad
   - TV
   - Podcasts
-  - 'App Store'
+  - "App Store"
   - Music
   - Messages
   - FaceTime
@@ -21,7 +21,7 @@ dockitems_remove:
   - Reminders
   - Photos
   - Siri
-dockitems_persist: 
+dockitems_persist:
   - name: "Brave Browser"
     path: "/Applications/Brave Browser.app/"
     pos: 0
@@ -38,11 +38,8 @@ dockitems_persist:
 #   path: "/Applications/Sublime Text.app/"
 #   pos: 5
 
-zsh_antigen_bundles_extras:
-  - romkatv/powerlevel10k
-
 configure_sudoers: false
-sudoers_custom_config: ''
+sudoers_custom_config: ""
 # Example:
 # sudoers_custom_config: |
 #   # Allow users in admin group to use sudo with no password.
@@ -62,7 +59,7 @@ dotfiles_files:
   - .tmux.conf
   - .tmux-cht-command
   - .tmux-cht-languages
-  - .config
+  - .config/nvim
 
 homebrew_installed_packages:
   # - ansible # Installed via Pip.
@@ -124,11 +121,11 @@ homebrew_cask_uninstalled_apps: []
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 # Looks like login does not works any more: https://github.com/mas-cli/mas/issues/164
-mas_installed_apps: 
+mas_installed_apps:
   - { id: 497799835, name: "Xcode" }
   - { id: 585829637, name: "Todoist" }
-  - { id: 967805235, name: "Paste" } 
-  - { id: 419330170, name: "Moom" } 
+  - { id: 967805235, name: "Paste" }
+  - { id: 419330170, name: "Moom" }
 mas_email: ""
 mas_password: ""
 
@@ -145,7 +142,7 @@ gem_packages: []
 # - name: bundler
 #   state: present # present/absent/latest, default: present
 #   version: "~> 1.15.1" # default: N/A
-npm_packages: 
+npm_packages:
   - name: tldr
   - name: "@lifeart/ember-language-server"
   - name: "@tailwindcss/language-server"
@@ -177,6 +174,9 @@ powerline_users:
 powerline_fonts:
   - RobotoMono
 
+apt_packages:
+  - dconf-cli
+
 dmg_apps:
-  - {name: "Logseq", url: https://github.com/logseq/logseq}
-  - {name: "Obsidian", url: https://github.com/obsidianmd/obsidian-releases}
+  - { name: "Logseq", url: https://github.com/logseq/logseq }
+  - { name: "Obsidian", url: https://github.com/obsidianmd/obsidian-releases }

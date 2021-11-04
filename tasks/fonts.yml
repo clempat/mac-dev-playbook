@@ -2,7 +2,8 @@
 - name: Downloads Fonts
   get_url:
     url: "{{item}}"
-    dest: ~/Library/Fonts
+    dest: >-
+      {%- if ansible_facts['os_family'] == 'Darwin' -%} ~/Library/Fonts {%- else -%} ~/.local/share/fonts {%- endif %}
   loop:
     - https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/RobotoMono/Regular/complete/Roboto%20Mono%20Nerd%20Font%20Complete.ttf
     - https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/RobotoMono/Regular/complete/Roboto%20Mono%20Nerd%20Font%20Complete%20Mono.ttf
