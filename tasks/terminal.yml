@@ -37,12 +37,12 @@
       git:
         depth: 1
         repo: https://github.com/dracula/gnome-terminal
-        dest: "{{ lookup('env', 'HOME') | default('~') }}/workspace/GitHub/dracula/gnome-terminal"
+        dest: "{{ lookup('env', 'HOME') | default('~') }}/workspace/libs/dracula/gnome-terminal"
 
     - name: Add permissions
       file:
-        path: "{{ lookup('env', 'HOME') | default('~') }}/workspace/GitHub/dracula/gnome-terminal/install.sh"
+        path: "{{ lookup('env', 'HOME') | default('~') }}/workspace/libs/dracula/gnome-terminal/install.sh"
         mode: "a+x"
 
     - name: Install Theme for Gnome terminal
-      shell: "{{ lookup('env', 'HOME') | default('~') }}/workspace/GitHub/dracula/gnome-terminal/install.sh -s Dracula -p Dracula --install-dircolors"
+      shell: "{{ lookup('env', 'HOME') | default('~') }}/workspace/libs/dracula/gnome-terminal/install.sh -s Dracula -p Dracula --install-dircolors"

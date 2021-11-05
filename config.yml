@@ -47,7 +47,7 @@ sudoers_custom_config: ""
 
 dotfiles_repo: git@github.com:clempat/dotfiles.git
 dotfiles_repo_accept_hostkey: true
-dotfiles_repo_local_destination: ~/workspace/GitHub/dotfiles
+dotfiles_repo_local_destination: ~/workspace/perso/dotfiles
 dotfiles_repo_version: main
 dotfiles_files:
   - .zprofile
@@ -60,6 +60,7 @@ dotfiles_files:
   - .tmux-cht-command
   - .tmux-cht-languages
   - .config/nvim
+  - .local/bin/tmux-sessionizer
 
 homebrew_installed_packages:
   # - ansible # Installed via Pip.
@@ -176,6 +177,18 @@ powerline_fonts:
 
 apt_packages:
   - dconf-cli
+  - i3
+  - pavucontrol
+  - moreutils
+  - dconf-editor
+  - golang
+  - python3-pip
+  - tmux
+  - wireshark
+  - fzf
+  - xclip
+  - screenkey
+  - ripgrep
 
 dmg_apps:
   - { name: "Logseq", url: https://github.com/logseq/logseq }
