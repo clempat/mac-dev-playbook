@@ -1,0 +1,11 @@
+---
+
+- name: Clone Quandoo Projects
+  tags: ["quandoo"]
+  git:
+   repo: "{{ item }}"
+   dest: "{{ lookup('env', 'HOME') | default('~') }}/workspace/quandoo/{{ item | urlsplit('path') | split('/') | last | replace('.git', '')}}"
+   key_file: "{{ lookup('env', 'HOME') | default('~') }}/.ssh/ansible"
+   bare: yes
+  loop:
+   - git@gitlab.com:quandoo-dev/portal-group/portal.git

@@ -155,6 +155,7 @@ npm_packages:
   - name: dockerfile-language-server-nodejs
   - name: stylelint-lsp
   - name: vscode-langservers-extracted
+  - name: pnpm
 # - name: webpack
 #   state: present # present/absent/latest, default: present
 #   version: "^2.6" # default: N/A

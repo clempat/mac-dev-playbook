@@ -4,3 +4,4 @@
 
 - name: "Install neovim Plugins"
   shell: "nvim +PlugInstall! +PlugClean! +PlugUpdate! +qall"
+

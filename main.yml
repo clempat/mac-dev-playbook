@@ -2,14 +2,11 @@
 - hosts: all
 
   vars_files:
-    - default.config.yml
+    - config.yml
 
   pre_tasks:
-    - name: Include playbook configuration.
-      include_vars: "{{ item }}"
-      with_fileglob:
-        - "{{ playbook_dir }}/config.yml"
-      tags: ["always"]
+    - import_tasks: tasks/requirements.yml
+      tags: ["dotfiles"]
 
   roles:
     - role: elliotweiser.osx-command-line-tools
@@ -56,6 +53,9 @@
 
     - import_tasks: tasks/git.yml
       tags: ["git"]
+
+    - import_tasks: tasks/projects.yml
+      tags: ["projects"]
 
     - import_tasks: tasks/zsh.yml
       tags: ["zsh"]
