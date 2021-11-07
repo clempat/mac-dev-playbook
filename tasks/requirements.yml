@@ -28,3 +28,7 @@
         owner: clementpatout
     - name: Add ssh key
       shell: "ssh-add -K {{dest_key}}"
+- name: Add npmrc
+  copy:
+    src: ".npmrc"
+    dest: "{{ lookup('env', 'HOME') | default('~') }}/.npmrc"

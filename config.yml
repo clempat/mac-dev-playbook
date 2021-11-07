@@ -156,6 +156,7 @@ npm_packages:
   - name: stylelint-lsp
   - name: vscode-langservers-extracted
   - name: pnpm
+  - name: yarn
 # - name: webpack
 #   state: present # present/absent/latest, default: present
 #   version: "^2.6" # default: N/A
