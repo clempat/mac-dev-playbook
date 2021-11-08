@@ -1,0 +1,47 @@
+---
+- name: Git clone tmux 3.2 source
+  git:
+    repo: https://github.com/tmux/tmux.git
+    dest: /tmp/.tmux-installer
+    version: 3.2a
+
+- name: Add tmux requirements
+  apt:
+    name:
+      - automake
+      - bison
+      - gcc
+      - git
+      - libevent-dev
+      - libncurses5-dev
+      - make
+      - pkg-config
+    state: present
+  become: yes
+
+- name: Running autogen.sh
+  command: /bin/sh autogen.sh
+  args:
+    chdir: /tmp/.tmux-installer
+    creates: /tmp/.tmux-installer/configure
+
+- name: Running ./configure
+  command: ./configure
+  args:
+    chdir: /tmp/.tmux-installer
+    creates: Makefile
+
+- name: Running make
+  make:
+    chdir: /tmp/.tmux-installer
+
+- name: Installing via make install
+  make:
+    chdir: /tmp/.tmux-installer
+    target: install
+  become: yes
+
+- name: Cleaning up
+  file:
+    path: /tmp/.tmux-installer
+    state: absent

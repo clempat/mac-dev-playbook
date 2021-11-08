@@ -33,6 +33,10 @@
       when: ansible_facts['os_family'] != 'Darwin'
       tags: ["i3"]
 
+    - import_tasks: tasks/tmux.yml
+      when: ansible_facts['os_family'] != 'Darwin'
+      tags: ["tmux"]
+
     - import_tasks: tasks/sudoers.yml
       when: ansible_facts['os_family'] == 'Darwin' and configure_sudoers
       tags: ["sudoers"]
