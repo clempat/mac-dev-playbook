@@ -61,6 +61,7 @@ dotfiles_files:
   - .tmux-cht-languages
   - .config/nvim
   - .local/bin/tmux-sessionizer
+  - .gitconfig
 
 homebrew_installed_packages:
   # - ansible # Installed via Pip.
