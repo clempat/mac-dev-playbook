@@ -15,19 +15,17 @@
     dest_key: "{{ lookup('env', 'HOME') | default('~') }}/.ssh/ansible"
   block:
     - name: Ensure .ssh directory exists.
-      file: 
+      file:
         dest: "{{ dest_key | dirname }}"
-        mode: 0700 
-        owner: clementpatout 
+        mode: 0700
+        owner: clementpatout
         state: directory
     - name: Install ssh key
-      copy: 
-        src: "{{ source_key }}" 
+      copy:
+        src: "{{ source_key }}"
         dest: "{{ dest_key }}"
         mode: 0600
         owner: clementpatout
-    - name: Add ssh key
-      shell: "ssh-add -K {{dest_key}}"
 - name: Add npmrc
   copy:
     src: ".npmrc"
