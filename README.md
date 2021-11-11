@@ -25,7 +25,7 @@ This playbook is a fork from [geerlingguy playbook](https://github.com/geerlingg
 
 1. Install Ansible `sudo apt-get update && sudo apt-get install ansible -y`
 2. Create a Terminal profile called 'Dracula'
-3. Install requirements: `~nsible-galaxy install -r requirements.yml`
+3. Install requirements: `ansible-galaxy install -r requirements.yml`
 4. Run `ansible-playbook main.yml --ask-vault-pass --ask-become-pass`
 
 ## More
