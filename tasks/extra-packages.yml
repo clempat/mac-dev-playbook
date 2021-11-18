@@ -1,4 +1,24 @@
 ---
+- name: Install apt
+  when: ansible_facts['os_family'] == 'Debian'
+  apt:
+    name: "{{ item.name | default(item) }}"
+    state: "{{ item.state | default('present') }}"
+    version: "{{ item.version | default(omit) }}"
+    executable: "{{ item.executable | default(omit) }}"
+  loop: "{{ apt_packages }}"
+  become: true
+
+- name: Install pacman
+  when: ansible_facts['os_family'] == 'Archlinux'
+  pacman:
+    name: "{{ item.name | default(item) }}"
+    state: "{{ item.state | default('present') }}"
+    version: "{{ item.version | default(omit) }}"
+    executable: "{{ item.executable | default(omit) }}"
+  loop: "{{ pacman_packages }}"
+  become: true
+
 - name: Install global Composer packages.
   composer:
     command: "{{ (item.state | default('present') == 'absent') | ternary('remove', 'require') }}"
@@ -32,13 +52,3 @@
     user_install: false
     executable: "{{ item.executable | default(omit) }}"
   loop: "{{ gem_packages }}"
-
-- name: Install apt
-  when: ansible_facts['os_family'] != 'Darwin'
-  apt:
-    name: "{{ item.name | default(item) }}"
-    state: "{{ item.state | default('present') }}"
-    version: "{{ item.version | default(omit) }}"
-    executable: "{{ item.executable | default(omit) }}"
-  loop: "{{ apt_packages }}"
-  become: true

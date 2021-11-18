@@ -31,7 +31,7 @@
       when: "'Dracula' not in terminal_theme.stdout"
 # Install for Linux
 - name: Install terminal theme on Linux
-  when: ansible_facts['os_family'] != 'Darwin'
+  when: ansible_facts['os_family'] == 'Debian'
   block:
     - name: Get the theme repository
       git:

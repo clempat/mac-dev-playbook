@@ -15,8 +15,8 @@
   become: true
 
 - name: Change shell to zsh
-  shell: "chsh -s {{ zsh_path.stdout }}"
-  become_user: clementpatout
+  shell: "chsh -s {{ zsh_path.stdout }} {{ lookup('env', 'USER') }}"
+  become: true
   when: echo_shell.stdout != zsh_path.stdout
 
 - name: Install Oh-My-Zsh

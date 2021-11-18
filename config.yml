@@ -62,6 +62,7 @@ dotfiles_files:
   - .config/nvim
   - .local/bin/tmux-sessionizer
   - .gitconfig
+  - .config/systemd
 
 homebrew_installed_packages:
   # - ansible # Installed via Pip.
@@ -172,9 +173,6 @@ configure_sublime: false
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks: []
 
-powerline_users:
-  - user: clementpatout
-
 powerline_fonts:
   - RobotoMono
 
@@ -192,6 +190,20 @@ apt_packages:
   - xclip
   - screenkey
   - ripgrep
+
+pacman_packages:
+  - pavucontrol
+  - moreutils
+  - dconf-editor
+  - tmux
+  - fzf
+  - xclip
+  - screenkey
+  - ripgrep
+  - zsh
+  - zsh-history-substring-search
+  - zsh-theme-powerlevel10k
+  - jenv
 
 dmg_apps:
   - { name: "Logseq", url: https://github.com/logseq/logseq }

@@ -28,6 +28,10 @@ This playbook is a fork from [geerlingguy playbook](https://github.com/geerlingg
 3. Install requirements: `ansible-galaxy install -r requirements.yml`
 4. Run `ansible-playbook main.yml --ask-vault-pass --ask-become-pass`
 
+### ARCH
+1. Install ansible `sudo pacman -S ansible`
+2. 
+
 ## More
 
 For more information I would advice going to the original repository.
