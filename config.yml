@@ -63,6 +63,8 @@ dotfiles_files:
   - .local/bin/tmux-sessionizer
   - .gitconfig
   - .config/systemd
+  - .config/kitty
+  - .config/i3
 
 homebrew_installed_packages:
   # - ansible # Installed via Pip.
@@ -204,6 +206,7 @@ pacman_packages:
   - zsh-history-substring-search
   - zsh-theme-powerlevel10k
   - jenv
+  - nfs-utils
 
 dmg_apps:
   - { name: "Logseq", url: https://github.com/logseq/logseq }
