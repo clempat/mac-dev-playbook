@@ -1,9 +1,16 @@
 ---
+- name: Fonts directory
+  file:
+    force: yes
+    path: >-
+      {%- if ansible_facts['os_family'] == 'Darwin' -%} ~/Library/Fonts {%- else -%} ~/.local/share/fonts {%- endif %}
+    state: directory
+
 - name: Downloads Fonts
   get_url:
     url: "{{item}}"
     dest: >-
-      {%- if ansible_facts['os_family'] == 'Darwin' -%} ~/Library/Fonts {%- else -%} ~/.local/share/fonts {%- endif %}
+      {%- if ansible_facts['os_family'] == 'Darwin' -%} ~/Library/Fonts {%- else -%} ~/.local/share/fonts {%- endif -%}/{{ item | basename | replace("%20", " ") }}
   loop:
     - https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/RobotoMono/Regular/complete/Roboto%20Mono%20Nerd%20Font%20Complete.ttf
     - https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/RobotoMono/Regular/complete/Roboto%20Mono%20Nerd%20Font%20Complete%20Mono.ttf
@@ -11,3 +18,4 @@
     - https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
     - https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
     - https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+    - https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/Ligatures/Regular/complete/JetBrains%20Mono%20Regular%20Nerd%20Font%20Complete%20Mono.ttf

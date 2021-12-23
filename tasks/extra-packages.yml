@@ -19,6 +19,31 @@
   loop: "{{ pacman_packages }}"
   become: true
 
+- user:
+    name: aur_builder
+    create_home: yes
+    group: wheel
+  when: ansible_facts['os_family'] == 'Archlinux'
+  become: yes
+
+- lineinfile:
+    path: /etc/sudoers.d/11-install-aur_builder
+    line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
+    create: yes
+    validate: "visudo -cf %s"
+  when: ansible_facts['os_family'] == 'Archlinux'
+  become: yes
+
+- name: Install pacaur
+  when: ansible_facts['os_family'] == 'Archlinux'
+  aur:
+    name: "{{item}}"
+  loop: "{{ aur_packages }}"
+  become: true
+  become_user: aur_builder
+  environment:
+    EDITOR: nvim
+
 - name: Install global Composer packages.
   composer:
     command: "{{ (item.state | default('present') == 'absent') | ternary('remove', 'require') }}"

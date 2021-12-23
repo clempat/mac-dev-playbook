@@ -65,6 +65,14 @@ dotfiles_files:
   - .config/systemd
   - .config/kitty
   - .config/i3
+  - .config/i3status
+  - .config/picom
+  - .config/rofi
+  - .config/dunst
+  - .config/fontconfig
+  - .local/share/rofi
+  - .config/gtk-3.0/settings.ini
+  - .config/gtk-2.0/settings.ini
 
 homebrew_installed_packages:
   # - ansible # Installed via Pip.
@@ -149,16 +157,7 @@ gem_packages: []
 #   version: "~> 1.15.1" # default: N/A
 npm_packages:
   - name: tldr
-  - name: "@lifeart/ember-language-server"
-  - name: "@tailwindcss/language-server"
-  - name: vscode-langservers-extracted
   - name: typescript
-  - name: typescript-language-server
-  - name: yaml-language-server
-  - name: graphql-language-service-cli
-  - name: dockerfile-language-server-nodejs
-  - name: stylelint-lsp
-  - name: vscode-langservers-extracted
   - name: pnpm
   - name: yarn
 # - name: webpack
@@ -180,7 +179,7 @@ powerline_fonts:
 
 apt_packages:
   - dconf-cli
-  - i3
+  - i3-gaps
   - pavucontrol
   - moreutils
   - dconf-editor
@@ -194,6 +193,18 @@ apt_packages:
   - ripgrep
 
 pacman_packages:
+  - i3-gaps
+  - bluez
+  - bluez-utils
+  - blueman
+  - xorg-server
+  - xorg-apps
+  - xorg-xinit
+  - lightdm
+  - lightdm-gtk-greeter
+  - ttf-ubuntu-font-family
+  - ttf-dejavu
+  - ttf-freefont
   - pavucontrol
   - moreutils
   - dconf-editor
@@ -207,7 +218,43 @@ pacman_packages:
   - zsh-theme-powerlevel10k
   - jenv
   - nfs-utils
+  - cifs-utils
+  - gnome-keyring
+  - make
+  - inkscape
+  - clojure
+  - go
 
 dmg_apps:
   - { name: "Logseq", url: https://github.com/logseq/logseq }
   - { name: "Obsidian", url: https://github.com/obsidianmd/obsidian-releases }
+
+aur_packages:
+  - 1password
+  - appimagelauncher-git
+  - auracle-git
+  - brave-bin
+  - insomnia-bin
+  - logseq-desktop
+  - neovim-git
+  - nerd-fonts-noto-sans-mono
+  - nvm
+  - otf-san-francisco
+  - plymouth-git
+  - python-elgato-streamdeck
+  - python-pynput
+  - slack-desktop
+  - streamdeck-ui
+  - teams-insiders
+  - todoist-appimage
+  - obsidian-appimage
+
+projects:
+  - org: swatchltd
+    repo: git@github.com:Swatchltd/swa-digital-catalog.git
+    bare: yes
+  - org: quandoo
+    repo: git@gitlab.com:quandoo-dev/portal-group/portal.git
+    bare: yes
+  - org: quandoo
+    repo: git@gitlab.com:quandoo-dev/portal-group/portal_api.git

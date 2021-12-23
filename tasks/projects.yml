@@ -1,21 +1,13 @@
 ---
-
-- name: Clone Quandoo Projects
-  tags: ["quandoo"]
+- name: "Clone {{ item.org | default('Personal') }} Projects"
+  tags: "[{{ item.org | default('perso') }}]"
   git:
-   repo: "{{ item }}"
-   dest: "{{ lookup('env', 'HOME') | default('~') }}/workspace/quandoo/{{ item | urlsplit('path') | split('/') | last | replace('.git', '')}}"
-   key_file: "{{ lookup('env', 'HOME') | default('~') }}/.ssh/ansible"
-   bare: yes
-  loop:
-   - git@gitlab.com:quandoo-dev/portal-group/portal.git
-
-- name: Clone Swatch Projects
-  tags: ["swatch"]
-  git:
-   repo: "{{ item }}"
-   dest: "{{ lookup('env', 'HOME') | default('~') }}/workspace/swatchltd/{{ item | urlsplit('path') | split('/') | last | replace('.git', '')}}"
-   key_file: "{{ lookup('env', 'HOME') | default('~') }}/.ssh/ansible"
-   bare: yes
-  loop:
-   - git@github.com:swa-legste/swa-digital-catalog.git
+    repo: "{{ item.repo | default(item) }}"
+    dest: "{{ lookup('env', 'HOME') | default('~') }}/workspace/{{ item.org | default('perso') }}/{{ item.repo | default(item) | basename | replace('.git', '')}}/{%- if 'bare' in item and item.bare -%}.bare/{%- endif -%}"
+    key_file: "{{ lookup('env', 'HOME') | default('~') }}/.ssh/ansible"
+    bare: "{{ item.bare | default('no') }}"
+- name: Add .git if .bare
+  copy:
+    content: "gitdir: ./.bare"
+    dest: "{{ lookup('env', 'HOME') | default('~') }}/workspace/{{ item.org | default('perso') }}/{{ item.repo | default(item) | basename | replace('.git', '')}}/.git"
+  when: "'bare' in item and item.bare"

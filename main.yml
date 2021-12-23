@@ -23,6 +23,9 @@
     - role: geerlingguy.mac.dock
       when: ansible_facts['os_family'] == 'Darwin' and configure_dock
       tags: ["dock"]
+    - role: luizgavalda.aur
+      when: ansible_facts['os_family'] == 'Archlinux'
+      tags: ["aur"]
 
   tasks:
     - name: Check the OS
@@ -58,14 +61,27 @@
     - import_tasks: tasks/git.yml
       tags: ["git"]
 
-    - import_tasks: tasks/projects.yml
-      tags: ["projects"]
-
     - import_tasks: tasks/zsh.yml
       tags: ["zsh"]
 
     - import_tasks: tasks/fonts.yml
       tags: ["fonts"]
+
+    - include_tasks:
+        file: tasks/projects.yml
+        apply:
+          tags: ["projects"]
+      tags: ["projects"]
+      loop: "{{ projects }}"
+
+    - include_tasks:
+        file: tasks/gtk-icons.yml
+        apply:
+          tags: ["gtk-icons"]
+      tags: ["gtk-icons"]
+      when: false # could not having working. doing it manualy
+      loop:
+        - https://github.com/bikass/kora.git
 
     - include_tasks:
         file: tasks/dmg.yml
