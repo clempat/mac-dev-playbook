@@ -1,8 +1,9 @@
 ---
-- name: Make sure .config is a directory
+- name: Make sure all directories are present
   file:
-    path: "~/.config"
+    path: "{{ item }}"
     state: directory
+  loop: "{{ dotfiles_folders }}"
 
 - name: Make sure .config is a directory
   file:

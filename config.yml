@@ -22,8 +22,8 @@ dockitems_remove:
   - Photos
   - Siri
 dockitems_persist:
-  - name: "Brave Browser"
-    path: "/Applications/Brave Browser.app/"
+  - name: "Firefox Developer Edition"
+    path: "/Applications/Firefox Developer Edition.app/"
     pos: 0
   - name: "Todoist"
     path: "/Applications/Todoist.app/"
@@ -34,9 +34,9 @@ dockitems_persist:
   - name: "Kitty"
     path: "/Applications/kitty.app/"
     pos: 3
-# - name: "Sublime Text"
-#   path: "/Applications/Sublime Text.app/"
-#   pos: 5
+  - name: "Microsoft Teams"
+    path: "/Applications/Microsoft Teams.app/"
+    pos: 4
 
 configure_sudoers: false
 sudoers_custom_config: ""
@@ -49,6 +49,12 @@ dotfiles_repo: git@github.com:clempat/dotfiles.git
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/workspace/perso/dotfiles
 dotfiles_repo_version: main
+dotfiles_folders:
+  - ~/.local/share
+  - ~/.config
+  - ~/.config/gtk-3.0
+  - ~/.config/gtk-2.0
+  - ~/.local/bin
 dotfiles_files:
   - .zprofile
   - .zshrc
@@ -129,7 +135,7 @@ homebrew_cask_apps:
   - alfred
   - discord
   - caffeine
-  - brewcake
+  - cakebrew
   - amethyst
   - kitty
 
@@ -252,12 +258,12 @@ aur_packages:
   - todoist-appimage
   - obsidian-appimage
 
-projects:
-  - org: swatchltd
-    repo: git@github.com:Swatchltd/swa-digital-catalog.git
-    bare: yes
-  - org: quandoo
-    repo: git@gitlab.com:quandoo-dev/portal-group/portal.git
-    bare: yes
-  - org: quandoo
-    repo: git@gitlab.com:quandoo-dev/portal-group/portal_api.git
+projects: []
+  #  - org: swatchltd
+  #    repo: git@github.com:Swatchltd/swa-digital-catalog.git
+  #    bare: yes
+  #  - org: quandoo
+  #    repo: git@gitlab.com:quandoo-dev/portal-group/portal.git
+  #    bare: yes
+  #  - org: quandoo
+  #    repo: git@gitlab.com:quandoo-dev/portal-group/portal_api.git
