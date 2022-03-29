@@ -28,7 +28,7 @@
         mode: 0600
         owner:  "{{ lookup('env', 'USER') }}"
     - name: add the key
-      shell: ssh-add ~/.ssh/ansible
+      shell: eval "$(ssh-agent)" && ssh-add ~/.ssh/ansible
 - name: Add npmrc
   copy:
     src: ".npmrc"

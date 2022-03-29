@@ -31,12 +31,18 @@ dockitems_persist:
   - name: "Obsidian"
     path: "/Applications/Obsidian.app/"
     pos: 2
-  - name: "Kitty"
+  - name: "kitty"
     path: "/Applications/kitty.app/"
     pos: 3
   - name: "Microsoft Teams"
     path: "/Applications/Microsoft Teams.app/"
     pos: 4
+  - name: "Obsidian"
+    path: "/Applications/Obsidian.app/"
+    pos: 5
+  - name: "Logseq"
+    path: "/Applications/Logseq.app/"
+    pos: 6
 
 configure_sudoers: false
 sudoers_custom_config: ""
@@ -65,7 +71,7 @@ dotfiles_files:
   - .tmux.conf
   - .tmux-cht-command
   - .tmux-cht-languages
-  - .config/nvim
+  - .config/nvim/lua/custom
   - .local/bin/tmux-sessionizer
   - .gitconfig
   - .config/systemd
@@ -130,7 +136,6 @@ homebrew_cask_apps:
   - handbrake
   - licecap
   - sequel-ace
-  - slack
   - transmit
   - alfred
   - discord
@@ -138,6 +143,7 @@ homebrew_cask_apps:
   - cakebrew
   - amethyst
   - kitty
+  - home-assistant
 
 homebrew_cask_uninstalled_apps: []
 
@@ -169,6 +175,7 @@ npm_packages:
   - name: typescript
   - name: pnpm
   - name: yarn
+  - name: prettier
 # - name: webpack
 #   state: present # present/absent/latest, default: present
 #   version: "^2.6" # default: N/A
@@ -258,7 +265,8 @@ aur_packages:
   - todoist-appimage
   - obsidian-appimage
 
-projects: []
+projects:
+  []
   #  - org: swatchltd
   #    repo: git@github.com:Swatchltd/swa-digital-catalog.git
   #    bare: yes
