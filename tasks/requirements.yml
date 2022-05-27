@@ -33,3 +33,10 @@
   copy:
     src: ".npmrc"
     dest: "{{ lookup('env', 'HOME') | default('~') }}/.npmrc"
+
+- name: Install nvChad neovim config
+  git:
+    depth: 1
+    repo: https://github.com/NvChad/NvChad
+    dest: "{{ lookup('env', 'HOME') | default('~') }}/.config/nvim"
+
