@@ -85,6 +85,7 @@ dotfiles_files:
   - .local/share/rofi
   - .config/gtk-3.0/settings.ini
   - .config/gtk-2.0/settings.ini
+  - .config/yabai
 
 homebrew_installed_packages:
   # - ansible # Installed via Pip.
@@ -117,6 +118,9 @@ homebrew_installed_packages:
   - tmux
   - fzf
   - jenv
+  - lazygit
+  - age
+  - brotli
 
 homebrew_taps:
   - homebrew/core
@@ -129,7 +133,6 @@ homebrew_cask_apps:
   - 1password
   - chromedriver
   - docker
-  - dropbox
   - firefox-developer-edition
   - google-chrome
   - brave-browser
@@ -141,7 +144,6 @@ homebrew_cask_apps:
   - discord
   - caffeine
   - cakebrew
-  - amethyst
   - kitty
   - home-assistant
 
@@ -176,6 +178,7 @@ npm_packages:
   - name: pnpm
   - name: yarn
   - name: prettier
+  - name: eslint_d
 # - name: webpack
 #   state: present # present/absent/latest, default: present
 #   version: "^2.6" # default: N/A
