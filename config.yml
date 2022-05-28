@@ -113,7 +113,7 @@ pacman_packages:
   - clojure
   - go
   - alacritty
-  - picom
+  - picom-git
   - polybar
   - rofi
   - rofi-emoji
