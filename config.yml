@@ -5,45 +5,6 @@ configure_dotfiles: true
 configure_terminal: true
 configure_osx: true
 
-# Set to 'true' to configure the Dock via dockutil.
-configure_dock: true
-dockitems_remove:
-  - Launchpad
-  - TV
-  - Podcasts
-  - "App Store"
-  - Music
-  - Messages
-  - FaceTime
-  - Contacts
-  - Maps
-  - Notes
-  - Reminders
-  - Photos
-  - Siri
-dockitems_persist:
-  - name: "Firefox Developer Edition"
-    path: "/Applications/Firefox Developer Edition.app/"
-    pos: 0
-  - name: "Todoist"
-    path: "/Applications/Todoist.app/"
-    pos: 1
-  - name: "Obsidian"
-    path: "/Applications/Obsidian.app/"
-    pos: 2
-  - name: "kitty"
-    path: "/Applications/kitty.app/"
-    pos: 3
-  - name: "Microsoft Teams"
-    path: "/Applications/Microsoft Teams.app/"
-    pos: 4
-  - name: "Obsidian"
-    path: "/Applications/Obsidian.app/"
-    pos: 5
-  - name: "Logseq"
-    path: "/Applications/Logseq.app/"
-    pos: 6
-
 configure_sudoers: false
 sudoers_custom_config: ""
 # Example:
@@ -87,80 +48,6 @@ dotfiles_files:
   - .config/gtk-2.0/settings.ini
   - .config/yabai
 
-homebrew_installed_packages:
-  # - ansible # Installed via Pip.
-  - ripgrep
-  - autoconf
-  - bash-completion
-  - git
-  - github/gh/gh
-  - gpg
-  - httpie
-  - iperf
-  - libevent
-  - sqlite
-  - mcrypt
-  - nmap
-  - node
-  - nvm
-  - ssh-copy-id
-  - cowsay
-  - openssl
-  - pv
-  - wget
-  - wrk
-  - zsh-history-substring-search
-  - zsh
-  - wget
-  - antigen
-  - { name: luajit, state: head }
-  - { name: neovim, state: head }
-  - tmux
-  - fzf
-  - jenv
-  - lazygit
-  - age
-  - brotli
-
-homebrew_taps:
-  - homebrew/core
-  - homebrew/cask
-  - homebrew/cask-versions
-
-homebrew_cask_appdir: /Applications
-homebrew_cask_apps:
-  - nextcloud
-  - 1password
-  - chromedriver
-  - docker
-  - firefox-developer-edition
-  - google-chrome
-  - brave-browser
-  - handbrake
-  - licecap
-  - sequel-ace
-  - transmit
-  - alfred
-  - discord
-  - caffeine
-  - cakebrew
-  - kitty
-  - home-assistant
-
-homebrew_cask_uninstalled_apps: []
-
-# See `geerlingguy.mas` role documentation for usage instructions.
-# Looks like login does not works any more: https://github.com/mas-cli/mas/issues/164
-mas_installed_apps:
-  - { id: 497799835, name: "Xcode" }
-  - { id: 585829637, name: "Todoist" }
-  - { id: 967805235, name: "Paste" }
-  - { id: 419330170, name: "Moom" }
-mas_email: ""
-mas_password: ""
-
-osx_script: "~/.osx --no-restart"
-
 # Install packages from other package managers.
 # Note: You are responsible for making sure the required package managers are
 # installed, eg. through homebrew.
@@ -187,29 +74,11 @@ pip_packages: []
 #   state: present # present/absent/latest, default: present
 #   version: "0.16.3" # default: N/A
 
-# Set to 'true' to configure Sublime Text.
-configure_sublime: false
-
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks: []
 
 powerline_fonts:
   - RobotoMono
-
-apt_packages:
-  - dconf-cli
-  - i3-gaps
-  - pavucontrol
-  - moreutils
-  - dconf-editor
-  - golang
-  - python3-pip
-  - tmux
-  - wireshark
-  - fzf
-  - xclip
-  - screenkey
-  - ripgrep
 
 pacman_packages:
   - i3-gaps
@@ -243,12 +112,10 @@ pacman_packages:
   - inkscape
   - clojure
   - go
-
-dmg_apps:
-  - { name: "Logseq", url: https://github.com/logseq/logseq }
-  - { name: "Obsidian", url: https://github.com/obsidianmd/obsidian-releases }
+  - alacritty
 
 aur_packages:
+  - libvterm-0.1 # Needed for neovim
   - 1password
   - appimagelauncher-git
   - auracle-git
@@ -258,7 +125,7 @@ aur_packages:
   - neovim-git
   - nerd-fonts-noto-sans-mono
   - nvm
-  - otf-san-francisco
+  - otf-san-francisco-mono
   - plymouth-git
   - python-elgato-streamdeck
   - python-pynput

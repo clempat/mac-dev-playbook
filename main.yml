@@ -9,20 +9,9 @@
       tags: ["dotfiles"]
 
   roles:
-    - role: elliotweiser.osx-command-line-tools
-      when: ansible_facts['os_family'] == 'Darwin'
-    - role: geerlingguy.mac.homebrew
-      when: ansible_facts['os_family'] == 'Darwin'
-      tags: ["homebrew"]
     - role: geerlingguy.dotfiles
       when: configure_dotfiles
       tags: ["dotfiles"]
-    - role: geerlingguy.mac.mas
-      when: ansible_facts['os_family'] == 'Darwin' and mas_installed_apps or mas_installed_app_ids
-      tags: ["mas"]
-    - role: geerlingguy.mac.dock
-      when: ansible_facts['os_family'] == 'Darwin' and configure_dock
-      tags: ["dock"]
     - role: luizgavalda.aur
       when: ansible_facts['os_family'] == 'Archlinux'
       tags: ["aur"]
@@ -32,25 +21,12 @@
       debug:
         var: ansible_facts['os_family']
 
-    - import_tasks: tasks/i3.yml
-      when: ansible_facts['os_family'] == 'Debian'
-      tags: ["i3"]
-
-    - import_tasks: tasks/tmux.yml
-      when: ansible_facts['os_family'] == 'Debian'
-      tags: ["tmux"]
-
-    - import_tasks: tasks/sudoers.yml
-      when: ansible_facts['os_family'] == 'Darwin' and configure_sudoers
-      tags: ["sudoers"]
-
     - import_tasks: tasks/terminal.yml
       when: configure_terminal
       tags: ["terminal"]
 
-    - import_tasks: tasks/osx.yml
-      when: ansible_facts['os_family'] == 'Darwin' and configure_osx
-      tags: ["osx"]
+    - import_tasks: tasks/yay.yml
+      tags: ["yay"]
 
     - import_tasks: tasks/extra-packages.yml
       tags: ["extra-packages"]
@@ -82,14 +58,6 @@
       when: false # could not having working. doing it manualy
       loop:
         - https://github.com/bikass/kora.git
-
-    - include_tasks:
-        file: tasks/dmg.yml
-        apply:
-          tags: ["dmg"]
-      when: ansible_facts['os_family'] == 'Darwin' and dmg_apps
-      tags: ["dmg"]
-      loop: "{{ dmg_apps }}"
 
     - name: Run configured post-provision ansible task files.
       include_tasks: "{{ outer_item }}"

@@ -1,0 +1,32 @@
+---
+- name: Define if yay is installed
+  stat:
+    path: /usr/bin/yay
+  register: yay_state
+
+- name: Clone yay
+  when: not yay_state.stat.exists
+  git:
+    depth: 1
+    repo: https://aur.archlinux.org/yay.git
+    dest: "{{ lookup('env', 'HOME') | default('~') }}/yay"
+      
+# install base-devel
+- name: Install base-devel
+  community.general.pacman:
+    name: base-devel
+    state: present
+  become: yes
+  when: not yay_state.stat.exists
+
+- name: "MAKEPKG yay AUR helper"
+  shell: "makepkg -si --noconfirm > ./makepkg-yay.log"
+  when: not yay_state.stat.exists
+  args:
+    chdir: "{{ lookup('env', 'HOME') | default('~') }}/yay"
+
+- name: Recursively remove {{ lookup('env', 'HOME') | default('~') }}/yay
+  file:
+    path: "{{ lookup('env', 'HOME') | default('~') }}/yay"
+    state: absent
+  become: yes      
