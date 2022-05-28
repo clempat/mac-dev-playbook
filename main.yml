@@ -21,10 +21,6 @@
       debug:
         var: ansible_facts['os_family']
 
-    - import_tasks: tasks/terminal.yml
-      when: configure_terminal
-      tags: ["terminal"]
-
     - import_tasks: tasks/yay.yml
       tags: ["yay"]
 
