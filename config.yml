@@ -113,6 +113,11 @@ pacman_packages:
   - clojure
   - go
   - alacritty
+  - picom
+  - polybar
+  - rofi
+  - rofi-emoji
+
 
 aur_packages:
   - libvterm-0.1 # Needed for neovim
