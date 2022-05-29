@@ -86,7 +86,7 @@ pacman_packages:
   - bluez-utils
   - blueman
   - xorg-server
-  # - xorg-apps
+  - xorg-apps
   - xorg-xinit
   - lightdm
   - lightdm-gtk-greeter
@@ -115,6 +115,7 @@ pacman_packages:
   - alacritty
   - polybar
   - rofi
+  - nitrogen
 
 
 aur_packages:
