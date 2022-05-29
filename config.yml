@@ -86,7 +86,7 @@ pacman_packages:
   - bluez-utils
   - blueman
   - xorg-server
-  - xorg-apps
+  # - xorg-apps
   - xorg-xinit
   - lightdm
   - lightdm-gtk-greeter
