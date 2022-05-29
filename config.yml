@@ -113,7 +113,6 @@ pacman_packages:
   - clojure
   - go
   - alacritty
-  - picom-git
   - polybar
   - rofi
 
@@ -138,6 +137,7 @@ aur_packages:
   - teams-insiders
   - todoist-appimage
   - obsidian-appimage
+  - picom-git
 
 projects:
   []
