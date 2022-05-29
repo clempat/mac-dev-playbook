@@ -8,6 +8,7 @@
     executable: "{{ item.executable | default(omit) }}"
   loop: "{{ pacman_packages }}"
   become: true
+  ignore_errors: yes
 
 - user:
     name: aur_builder
@@ -31,6 +32,7 @@
   loop: "{{ aur_packages }}"
   become: true
   become_user: aur_builder
+  ignore_errors: yes
   environment:
     EDITOR: nvim
 
@@ -41,6 +43,7 @@
     # Ansible 2.4 supports `global_command` making `working_dir` optional.
     working_dir: "{{ lookup('env', 'COMPOSER_HOME') | default('~/.composer', true) }}"
   loop: "{{ composer_packages }}"
+  ignore_errors: yes
 
 - name: Install global NPM packages.
   npm:
@@ -50,6 +53,7 @@
     global: true
     executable: "{{ item.executable | default(omit) }}"
   loop: "{{ npm_packages }}"
+  ignore_errors: yes
 
 - name: Install global Pip packages.
   pip:
@@ -58,6 +62,7 @@
     version: "{{ item.version | default(omit) }}"
     executable: "{{ item.executable | default(omit) }}"
   loop: "{{ pip_packages }}"
+  ignore_errors: yes
 
 - name: Install global Ruby gems.
   gem:
@@ -67,3 +72,4 @@
     user_install: false
     executable: "{{ item.executable | default(omit) }}"
   loop: "{{ gem_packages }}"
+  ignore_errors: yes
