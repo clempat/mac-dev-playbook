@@ -116,7 +116,6 @@ pacman_packages:
   - picom-git
   - polybar
   - rofi
-  - rofi-emoji
 
 
 aur_packages:
